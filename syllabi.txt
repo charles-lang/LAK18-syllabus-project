@@ -1,0 +1,1507 @@
+HUDM 5122 Spring 2017
+HUDM 5122: Applied Regression Analysis
+Professor: L. Elizabeth Tipton Office Hours: https://tipton.youcanbook.me/ Email: tipton@tc.columbia.edu Office: Grace Dodge 457b
+TA1: Nick Anderson Office Hours: Email: nla2121@tc.columbia.edu Office:
+TA2:
+Prerequisite: HUDM 4122 or permission of instructor
+Course Description: Least squares estimation theory. Traditional simple and multiple regression models and polynomial regression models, with grouping variables including one-way ANOVA, two- way ANOVA, and analysis of covariance.
+Suggested texts for the course:
+• Allison, P. (1998) Multiple regression: A primer. The Pine Forge Press series in research methods and statistics. Thousand Oaks, CA: Sage. ($25 - $45)
+• Fox, J. (1991) Regression diagnostics. Sage University Papers Series on Quantitative Applications in the Social Sciences, 07-079. Newbury Park, CA: Sage. ($5 - $16)
+• Hardy, M. (1993) Regression with dummy variables. Sage University Papers Series on Quantitative Applications in the Social Sciences, 07-093. Newbury Park, CA: Sage. ($9 - $16)
+• Menard, S. (2001) Applied logistic regression analysis. Sage University Papers Series on Quantitative Applications in the Social Sciences, 07-106. Thousand Oaks, CA: Sage. ($8 - $16)
+• Field, A. (2009) Discovering statistics using SPSS. Third edition. SAGE.
+Software We will use SPSS in the laboratory sessions. Use of other software is permitted; please speak to me if you would like to do this.
+Best resource: UCLA statistical computing : http://www.ats.ucla.edu/stat/
+The method of least squares is the automobile of modern statistical analysis: despite its limitations, occasional accidents, and incidental pollution, this method and its numerous variations, extensions, and related conveyances carry the bulk of statistical analyses, and are known and valued by nearly all.
+--Stephen M. Stigler (1999, pg 320)
+1
+HUDM 5122 Spring 2017
+Course objectives: (1) Identify, code, and recode continuous and discrete variables and choose the
+appropriate statistical procedure for their analysis; (2) Describe relationships between predictor variables and a continuous outcome
+variable; (3) Model, estimate, and interpret point estimates, standard errors, confidence intervals,
+and hypothesis tests for regression slopes; (4) Delineate assumptions of linear statistical models used and evaluate particular
+analyses for meeting these assumptions; (5) Recognize and explain similarities and differences between regression and ANOVA
+models; (6) Conduct analyses to diagnose problems of multi-collinearity, influential points, model
+fit, etc.; (7) Become familiar with a nationally representative dataset and issues associated with
+using data of this kind for analysis; (8) Formulate questions, identify appropriate models, estimate models, and interpret the
+results for questions of real social science interest.
+Grading 50% Homework
+• There are 13 assignments. The first 11 are REQUIRED. The 12th & 13th assignments are optional and their scores can replace your lowest grade 1-2 grades.
+• You are encouraged to work together on your homework. However, students must submit separate homework assignments and must run their own analyses.
+• NO LATE HOMEWORK WILL BE ACCEPTED.
+20% Midterm
+• The midterm will cover Weeks 1 – 6.
+• You will be allowed one 8 1/2 x 11 one-sided “cheat sheet”.
+30% Final Project
+• You will choose a question, models, hypotheses, and run the analysis using methods learned in class.
+• You will write this up as a research publication, but with a shorter introduction section and longer methods section.
+2
+HUDM 5122 Spring 2017
+Schedule Unit Week/ Date Class Lecture Reading
+Homework due (do BEFORE
+date (in Monday)
+lecture) Intro & Review
+3 (1) 1/23 Syllabus,
+-Runyon Ch 11 & 12
+HW #0 {Greek Introduction,
+(on Moodle)
+Letters} Review
+Regression (2) 1/30 Simple
+regression
+Allison Ch 1 & 5
+Fox Ch 5 & 6 (on Moodle)
+HW #1 {Review}
+(3) 2/6 Multiple
+regression
+Allison Ch 2 & 3
+Fox Ch 5 & 6 (on Moodle)
+HW #2
+{Simple regression}
+(4) 2/13 Qualitative
+variables
+Hardy GB sctns 1 – 3 (pp. 1-29)
+HW #3 {Multiple Reg}
+(5) 2/20 Interactions Allison Ch 8
+Hardy GB sctn 4 (pp 29 – 63)
+HW #4 {Dummy vars}
+(6) 2/27 Non-linearity Allison Ch 8
+Hardy GB pp. 78-82
+Fox GB sctn 7 (pp 53 – 61)
+HW #5 {Interactions}
+Midterm (7) 3/6 Exam (2 hours) HW #6 {non-
+linearity}
+Midterm
+(8) 3/13 Spring Break!
+HUDM 5122 Spring 2017
+(9) 3/20 Real data Handout on Moodle:
+Midterms -Datasets
+returned -Codebooks -Cleaning/Importing
+Final Project information given out
+(10) 3/27 Choosing a
+model (causality, omitted variable bias, variable selection)
+4 On Moodle: --Gelman & Hill --Duncan & Gipson- Davis --Left-handed death --Explain vs. predict
+HW #7 {real data}
+(11) 4/3 Outliers,
+leverage, and influence
+Allison Ch 6
+Fox GB sctn 4 (pp 21 – 40)
+HW #8 {models}
+(12) 4/10 Non-normality,
+Non-constant variance, Collinearity
+Allison Ch 7
+Fox GB sctns 3, 5, 6, 10 (pp 10 – 21; 40 – 53; 75 – 79)
+Hardy GB pp. 82 – 84
+HW #9 {outliers, etc}
+Extensions (13) 4/17 Generalized
+linear models (e.g., logistic regression)
+Menard GB sctn 1- 2.2; 3 (pp 1 – 27; 41 – 67)
+Hardy GB pp. 75 – 78
+HW #10 {non- norm,etc}
+(14) 4/24 Other topics in
+regression (e.g., Poisson regression)
+Hardy, pp.56-60 HW #11
+Final Project
+(15) 5/1 Review/
+meetings about final projects
+HW #12 {extensions}
+(16) 5/8 Final project
+due Working with real data
+Final Project [due 5/8,10 am]
+HUDM 5122 Spring 2017
+Additional Statements
+1. The College will make reasonable accommodations for persons with documented disabilities. Students are encouraged to contact the Office of Access and Services for Individuals with Disabilities (OASID) for information about registration. You can reach OASID by email at oasid@tc.columbia.edu, stop by 163 Thorndike Hall or call 212-678-3689. Services are available only to students who have registered and submit appropriate documentation. As your instructor, I am happy to discuss specific needs with you as well. Please report any access related concerns about instructional material to OASID and to me as your instructor.
+2. The grade of Incomplete will be assigned only when the course attendance requirement has been met but, for reasons satisfactory to the instructor, the granting of a final grade has been postponed because certain course assignments are outstanding. If the outstanding assignments are completed within one calendar year from the date of the close of term in which the grade of Incomplete was received and a final grade submitted, the final grade will be recorded on the permanent transcript, replacing the grade of Incomplete, with a transcript notation indicating the date that the grade of Incomplete was replaced by a final grade. If the outstanding work is not completed within one calendar year from the date of the close of term in which the grade of Incomplete was received, the grade will remain as a permanent Incomplete on the transcript. In such instances, if the course is a required course or part of an approved program of study, students will be required to re-enroll in the course including repayment of all tuition and fee charges for the new registration and satisfactorily complete all course requirements. If the required course is not offered in subsequent terms, the student should speak with the faculty advisor or Program Coordinator about their options for fulfilling the degree requirement. Doctoral students with six or more credits with grades of Incomplete included on their program of study will not be allowed to sit for the certification exam.
+3. Teachers College students have the responsibility for activating the Columbia University Network ID (UNI) and a free TC Gmail account. As official communications from the College – e.g., information on graduation, announcements of closing due to severe storm, flu epidemic, transportation disruption, etc. -- will be sent to the student’s TC Gmail account, students are responsible for either reading email there, or, for utilizing the mail forwarding option to forward mail from their account to an email address which they will monitor.
+4. It is the policy of Teachers College to respect its members’ observance of their major religious holidays. Students should notify instructors at the beginning of the semester about their wishes to observe holidays on days when class sessions are scheduled. Where academic scheduling conflicts prove unavoidable, no student will be penalized for absence due to religious reasons, and alternative means will be sought for satisfying the academic requirements involved. If a suitable arrangement cannot be worked out between the student and the instructor, students and instructors should consult the appropriate department chair or director. If an additional appeal is needed, it may be taken to the Provost.
+5
+HUDM 5122 Spring 2017
+5. Sexual Harassment and Violence Reporting - Teachers College is committed to maintaining a safe environment for students. Because of this commitment and because of federal and state regulations, we must advise you that if you tell any of your instructors about sexual harassment or gender-based misconduct involving a member of the campus community, your instructor is required to report this information to the Title IX Coordinator, Janice Robinson. She will treat this information as private, but will need to follow up with you and possibly look into the matter. The Ombuds officer for Gender- Based Misconduct is a confidential resource available for students, staff and faculty. “Gender-based misconduct” includes sexual assault, stalking, sexual harassment, dating violence, domestic violence, sexual exploitation, and gender-based harassment. For more information, see http://sexualrespect.columbia.edu/gender-based-misconduct-policy- students.
+6. Students who intentionally submit work either not their own or without clear attribution to the original source, fabricate data or other information, engage in cheating, or misrepresentation of academic records may be subject to charges. Sanctions may include dismissal from the college for violation of the TC principles of academic and professional integrity fundamental to the purpose of the College.
+6
+
+
+
+Syllabus
+Proseminar in Education II:  Research in Learning, Cognition, Instruction and Development
+Spring 2012
+Tuesday, 4:50- 7:30
+Cindy Hmelo-Silver, GSE Room 320, 732-932-7496, ext. 8311 cindy.hmelo-silver@gse.rutgers.edu
+
+Keith Weber, GSE Room 233, 732-932-7496, ext 8123
+
+keith.weber@gse.rutgers.edu
+
+Office Hours: Tuesday and Wednesday 3:30-4:30 or by arrangement.
+
+Overall Course Goals
+
+The purpose of this course is to learn about research in the areas of Learning, Cognition, Instruction, and Development: how it is conducted, how it is communicated, and how it evolves. Like most scholarly fields, education has its traditions, its norms and standards, and its methods of operation. There are some overarching themes, questions, and approaches to research that we will explore.
+
+Specific Course Goals
+
+There are three primary goals in this course and a number of secondary goals. The primary goals are these:
+
+1.  To understand the kinds of questions asked by researchers in LCID.
+2.  To understand how research is conducted in LCID fields to address those questions.
+3.  To learn how to read the research literature in LCID.
+4.  To learn what the current important topics are in the field of LCID, and to gain an idea of the research base that underlies current opinion.
+5.  To develop the habits of mind of a critical researcher,
+
+The secondary goals involve a number of skills and sets of knowledge that are requisite to becoming an active member of the educational research community. These include:
+
+1.  Reading the literature in the field, what are different kinds of articles one might encounter, how to be skeptical without being cynical, how to read technical sections of a research article, and how to glean from an article that which is important to you.
+
+
+2.  Writing for scholarly publication, including appropriate style conventions such as APA, MLA, or University of Chicago style.
+3.  Understanding how different research perspectives and disciplinary lenses can be focused on the same issue.
+4.  Becoming part of a research community
+5.  Preparing a research poster presentation
+
+Course Readings:
+
+1.  Required text: Green, J. L., Camilli, G., & Elmore, P. (2006). Handbook of
+Complementary Methods in Education Research
+2.  Style guide for your discipline (e.g., APA manual)
+3.  Additional readings available online at sakai.rutgers.edu
+
+Note that this list is tentative and once I see who is in the class, these will be revised, so please do not print any readings beyond Sept 22.
+
+Course Requirements
+
+The requirements in the course are directly related to the course goals. The following activities are required for the course:
+
+Major Activity
+
+The first set of activities all revolves around one scholarly activity. Each student will choose a topic that is currently important in his or her field of study and develop expertise in that field. You will collect the pertinent literature in the field and express your command of it in two different modes. These modes are:
+
+1.  A written summary. This will be a 20-30 page summary of the most important research studies and other scholarship on a topic
+relevant to LCID. This summary should strictly follow the publication format that is most widely used in your field. Five percent of this grade will be associated with turning in your outline and tentative reference list by 11/9/2010/ 30% of final grade
+2.  Development of a poster for a poster session of your findings. This would be similar to what one would see at a poster session at a conference.  10% of final grade
+
+You may do this individually or in groups of two or three.  You need to discuss your topic with me and get it approved.  The assignment is the same regardless of group size however, you should be aware that a more substantial literature review would be expected for a larger group.
+
+Secondary Activities
+
+
+The remaining requirements for the course involve or are related to activities that researchers in education engage in on a fairly regular basis. These requirements are:
+
+1.  Passing the Institutional Review Board test for use of human subjects.  5%
+2.  Determining the major journals in an LCID area, what they publish, and how they differ from one another. 5%
+3.  Lead class discussion  10%
+4.  Keep a Sakai blog of your reflections on the course readings each week.
+Respond to at least two of your fellow classmates blogs.  You may of course respond to more, but try to vary who you comment on.  These are due by 8:00 pm on the Monday before class.  The grade will be based on both quality of posts as well as timeliness 10%
+a.  As you read each article/ chapter, read it with a critical eye. Try to determine what you can take away that is valuable as well as the flaws.	Try to think about how you can take something from another perspective and make it relevant.
+b.  In your reflections be sure to note at least 3 strengths about the readings, 3 weaknesses, and anything that you found provocative or at least interesting.
+5.  Read and reflect (in your sakai Blog) on two additional chapters from the Handbook and consider what issue or question in LCID this chapter might address.  10%
+6.  Participation in discussions. Note that to participate, you must be in class.
+10%
+7.  Participate in the intellectual life of the university.  Attend at least two colloquia at the university.  These may include departmental brown bags, invited speakers, and/or dissertation defenses.  Use your blog to document what you learned from the colloquium (no more than 1 page)
+10%
+
+All course requirements must be completed by April 28, 2011.  Any exceptions must be discussed with CHS  or KW individually with a set time for completion of course requirements that must be documented in writing.
+
+
+
+
+
+
+Date
+Activity
+Reading
+Assignment
+Jan
+17
+Course Introduction, Research Ethics
+Green, Camilli, & Elmore (GCE), Chapter 3 and Intro for students
+Introduce yourself by creating a blog profile in
+Sakai
+Jan
+24
+Learning Theories
+Overview
+Greeno, Collins, & Resnick (1996), GCE
+Chapter 45
+Blog: What kinds of
+questions can one ask about learning?
+Jan
+31
+How does understanding develop?
+Rittle-Johnson et al.
+GCE Chapter 12, Chapter 33
+
+
+Feb 7
+How can we understand what people learn?
+Smith, Maclin, Grosslight, & Davis (1997)
+
+GCE 31, 32
+Blog: Reflectons on
+readings, coments on other blogs (due each week)
+Feb
+14
+Understanding Learning, continued
+Moje et al (2004)
+
+GCE 16, 21
+Major journals
+Feb
+21
+Provocative Topics 1:
+
+The direct instruction vs. inquiry debate: Arguments using literature reviews
+
+
+
+Kirschner, Sweller, & Clark (2006), and responses (EP : Schmidt, Loyens, Van Gog, & Paas (2007), Hmelo-Silver, Duncan, & Chinn (2007), Kuhn (2007), Sweller, Kirschner, & Clark (2007)
+
+
+Feb
+28
+How can one measure learning?
+Mohan, Chen, & Anderson (2009),  Wilson
+(2009) ,   Gitomer??? Pellegrino?
+
+GCE 22
+
+
+Mar
+6
+What does it mean to become an expert?
+Hmelo-Silver, Marathe, & Liu (2007), Wineburg (1991)
+
+Add KEITH’s paper here?
+Paper topics due
+Mar
+13
+How can we understand learning processes and collaboration?
+Herrenkohl & Guerra (1998)
+GCE 13
+IRB due
+Mar
+20
+How do people learn in informal settings?
+Crowley et al (2001), Barron, (2006),
+
+GCE 10
+Paper outline and
+tentative reference list due
+
+
+
+
+Mar
+27
+How do youth form their identities? How do learners take on
+epistemic agency?
+
+Room 347
+Rubin (2008), Damsa et al. (2010)
+
+GCE 6,17
+
+
+Apr 3
+How do we design appropriate conditions for learning? How can
+technology support
+teaching and learning?
+
+Room 124
+Zhang et al, (2009), Boling (2008)
+
+GCE 11
+
+
+Apr
+10
+How can we support the development of
+disciplinary reasoning?
+Etkina et al., (2008), Chinn & Malhotra (2002), Engle & Conant (2002)
+
+
+Apr
+17
+How can we understand teachers and teaching?
+Francisco & Maher, (2010), Goldin, 2000
+
+GCE 46
+
+
+Apr
+21
+Provocative Topics 2
+TBD
+
+
+Apr
+28
+Posters
+
+124
+
+
+
+
+
+
+
+References
+
+Atwood, S., Turnbull, W., & Carpendale, J. I. M. (2010).  The construction of knowledge in classroom talk. Journal of the Learning Sciences, 19, 358-
+403.
+Barron, B. (2006). Interest and self-sustained learning as catalysts of development: A learning ecology perspective. Human Development, 49,
+193-224.
+Boling, E. C. (2008). Learning from teachers' conceptions of technology integration: What do blogs, instant messages, and 3D chat rooms have to do with it? Research in the Teaching of English, 43(1), 74-100.
+Chinn, C. A., & Malhotra, B. A. (2002). Epistemologically authentic inquiry in schools: A theoretical framework for evaluating inquiry tasks. Science Education, 86, 175-218.
+Crowley, K., Callanan, M., Jipson, J., Galco, J., Topping, K., & Shrager, J.
+(2001). Shared scientific thinking in everyday parent-child activity. Science
+Education, 85, 712-732.
+Damsa, C. I., Kirschner, P. A., Andriessen, J. E. B. Erkens, G., & Sins, P. H. M. (2010). Shared epistemic agency: An empirical study of an emergent construct. Journal of the Learning Sciences, 19, 143-187.
+Engle, R. A., & Conant, F. R. (2002). Guiding principles for fostering productive disciplinary engagement: Explaining an emergent argument in a community of learners classroom. Cognition and Instruction, 20, 399-483.
+Etkina, E.. Karelina, A., & Ruibal-Villesanor, M. (2008).How long does it take? A study of student acquisition of scientific abilities. Physical Review-Special Topics-Physics Education Research, 4, 020108-1-020108-15.
+Francisco, J. M. & Maher, C. A. (2010). Teachers attending to students’ mathematical reasoning: Lessons from an after-school research program. Journal of Mathematics Teacher Education, Online First: DOI
+10.1007/s10857-010-9144-x.
+Goldin, G. A. (2000). A scientific perspective on structured, task-based interviews in mathematics education research. In E. A. Kelley & R. Lesh (Eds). Handbook of Research Design in Mathematics and Science Education
+(pp. 517-545).  Mahwah NJ: Erlbaum.  Note:  Just print the text—the pdf includes the references for the whole book.  The chapter is about 30 pages.
+Greeno, J. G., Collins, A., & Resnick, L. (1996). Cognition and Learning. In D.
+Berliner & R. Calfee (Eds.), Handbook of educational psychology (pp. 15-
+46). New York NY: MacMillan.
+Gutiérrez. K. & Rogoff, B. (2003).Cultural ways of learning: Individual traits or repertoires of practice. Educational Researcher, 32(5), 19-25.
+Herrenkohl, L. R., & Guerra, M. R. (1998). Participant structures, scientific discourse, and student engagement in fourth grade. Cognition and Instruction, 16, 431-473.
+Hmelo-Silver, C. E., Marathe, S., & Liu, L. (2007). Fish swim, rocks sit, and lungs breathe: Expert-novice understanding of complex systems. Journal of the Learning Sciences, 16, 307-331.
+
+
+Hmelo-Silver, C. E., Duncan, R. G., Chinn, C. A. (2007). Scaffolding and achievement in problem-based and inquiry learning: A response to Kirschner, Sweller, and Clark (2006). Educational Psychologist, 42, 99-
+107.
+Kirschner, P. A., Sweller, J., & Clark, R. E. (2006). Why minimal guidance during instruction does not work: An analysis of the failure of constructivist, discovery, problem-based, experiential, and inquiry-based teaching. Educational Psychologist, 41, 75-86.
+Kuhn, D. (2007). Is direct instruction an answer to the right question? Educational
+Psychologist, 42, 109-113.
+Mohan, L., Chen, J., & Anderson, C. W. (2009). Developing a multi-year learning progression for carbon cycling in socio-ecological systems.  Journal of Research in Science Teaching, 46, 675-698.
+Moje, E. B., Ciechanowski, K. M., Kramer, K., Ellis, L., Carrillo, R. & Collazo, T. (2004).
+Working toward third space in content area literacy: An examination of everyday funds of knowledge and Discourse. Reading Research Quarterly, 39, ˆ38-70.
+Monte-sano, C. (in press).
+Rittle-Johnson, B., Saylor, M., Swygert K.E. (2008).  Learning from explaining: Does it matter if mom is listening?  Journal fo Experimental Child Psychology, 100 (2008) 215-224.
+Rubin, B. C. (2007). “There’s still not justice”: Youth civic identity development amid distinct school and community contexts. Teachers College Record, 109, 449-481.
+Schmidt, H. G., Loyens, S. M. M., van Gog, T., & Paas, F. (2007). Problem-based learning is compatible with human cognitive architecture: Commentary on Kirschner, Sweller, & Clark (2006). Educational Psychologist, 42, 91-97.
+Sweller, J., Kirschner, P. A., & Clark, R. C. (2007). Why minimally guided techniques do not work: A reply to commentaries. Educational Psychologist, 42, 115-121.
+Smith, C., Maclin, D., Grosslight, L., & Davis, H. (1997). Teaching for understanding: A study of students’ preinstructional theories of matter and a comparison of the effectiveness of two approaches to teaching about matter and density. Cognition and Instruction, 15, 317-393.
+Sweller, J., Kirschner, P. A., & Clark, R. C. (2007). Why minimally guided techniques do not work: A reply to commentaries. Educational Psychologist, 42, 115-121.
+Wineburg, S. S. (1991). Historical problem solving: A study of the cognitive processes used in the evaluation of documentary and pictorial evidence. Journal of Educational Psychology, 83, 73-87.
+Zhang, J., Scardamalia, M., Reeve, R., & Messina, R. (2009). Designs for collective cognitive responsiiblity in knowledge building communities. Journal of the Learning Sciences, 18, 7-44.
+
+
+Spring 2016
+Quantitative Research Methods in Education: ANOVA
+16:300:515:01
+3 Credits
+Th 4:50-7:30, GSE 208
+
+Instructor: Greg Camilli
+Email address: greg.camilli@gse.rutgers.edu
+Voice: (848) 932-0831
+10 Seminary Place, Room 325
+
+Office Hours: By appointment
+Prerequisites or other limitations: 16:300:511,
+
+15:291:531/532, or equivalent
+Mode of Instruction:
+       Lecture
+       Seminar
+ X   Hybrid
+       Online
+       Other
+
+Permission required:
+        No
+ X    Yes
+Directions about where to get permission numbers: Contact the instructor.
+
+
+
+Program goals
+
+The master’s of education degree in Educational Statistics, Measurement and Evaluation aims to provide students training in basic and intermediate statistical, measurement, and evaluation methods. It serves as a preparation for students interested in working in research institutions, and pursuing Ph.D. studies in educational statistics and measurement or a related field. The Ph.D.in Statistics and Measurement within the Learning, Cognition, Instruction, and Development concentration prepares students to become statisticians and psychometricians with broad expertise in applied statistics, measurement theory, educational assessment and statistical analysis. An important feature of the program is early exposure to research and active learning through a variety of course offerings.
+
+Prerequisites
+
+The following skills are required for taking this class: Statistical methods courses through one-way ANOVA; facility with basic algebra is also required through linear equations. Familiarity with Excel--I will use this spreadsheet tool, but will not provide instruction. I strongly encourage you to acquire Excel skills. This is a fast-paced class. I will offer assistance through online and face-2-face meetings. However, there will be very little time to review perquisite material.
+
+Learning goals
+
+Upon successful completion of this course, you will be able to:
+1. Use and interpret graphical representations.
+2. Compute effect sizes.
+3. Have an intermediate understanding of dummy variables and linear regression.
+4. Understand and conduct hypothesis tests.
+5. Conduct tests planned and unplanned comparisons.
+6. Understand the concepts of internal and external validity.
+
+    7. Understand one- and two-way designs, mixed models, and propensity-score matching.
+8. Carry out statistical analyses using computer software (SPSS & Excel).
+
+Course catalog description
+
+This course is the first part of a one-year sequence in statistical methods designed to introduce students to the most commonly used methods in educational and social science research. No prior knowledge of statistics is required, but essentials of arithmetic and basic algebra will be used throughout the semester. Topics covered in this course include graphical representations, descriptive statistics, correlation, regression, experimental designs, basic probability, sampling distributions, confidence intervals, and hypothesis testing.
+
+Class materials/ Textbooks
+
+
+
+Required text:
+Experimental Design and Analysis
+
+
+(EDA)
+
+
+Howard J. Seltman  (free, online)
+
+Required chapters (on Sakai) from
+What is a p-value anyway?
+
+
+(PVL)
+
+
+Andrew Vickers
+
+Software:
+SPSS for Windows (version 20 or newer). New York: Prentice-Hall.
+
+Assignments and Requirements
+
+1. Email & Sakai Access: Efficient communication is a key to the success of instruction. In this course, email, Sakai, and face-to-face meetings are the main communication tools. For optimal teaching and learning, please check your email account frequently and make sure you are able to receive information, download files, drop messages, do homework, take exams and access your grades online from our course web. All information and activities are time sensitive. Late responses and requests will not be honored. For example, you will have one week to finish each homework assignment, but you will not be able to access the homework questions after the due date.
+
+2. Exams: The two online exams, midterm and final are each worth 30% of the final grade. No opportunities for extra credit are available.
+
+3. Homework assignments: About 8 homework assignments, worth 40% of the final course grade, will be given online throughout the semester. Homework assignments will be assigned on Monday and will be due on the following Monday giving you a whole week to work on each assignment. No late homework assignment is accepted. I will allow you to drop one assignment -
+- and grade on the basis of nine assignments. Homework assignment must be carried out independently. You cannot ask or offer help with homework unless the assignment is explicitly designated as a group activity.
+
+4. Participation: Participation is encouraged throughout the semester. Examples are: asking questions in class, emailing me with questions and comments, or helping your classmates with regarding to instructional activities (in or out of classes).
+
+5. Software & Calculator: SPSS for Windows will be used extensively to conduct statistical analyses for homework assignments and class exercises. However, for the
+
+
+
+
+exams, a calculator that performs basic operations will suffice.
+
+Discussion List
+
+In addition class, an alternative to find the answer to your question is to simply
+post your questions online. A Folder labeled Question Box will be created every week on Sakai for you to drop content-related questions. Your questions will be replied on a daily basis
+(weekdays). Please make sure you are familiar with the Sakai function.
+
+Final Grade
+
+Final letter grade will be assigned as follows:
+
+Final Score                    Letter Grade
+90% and Above             A
+80%-89%                       B+
+75%-79%                       B
+65%-74%                       C+
+60%-64%                       C Below 60%                    F
+
+Academic Integrity Policy
+
+The Office of Student Conduct supervises issues related to violations of academic integrity. Please familiarize yourself with the university policy on academic integrity at http://academicintegrity.rutgers.edu/academic-integrity-policy.
+
+Office of Disability Services
+
+Rutgers University welcomes students with disabilities into all of the University's educational programs. In order to receive consideration for reasonable accommodations, a student with a disability must contact the appropriate disability services office at the campus where you are officially enrolled, participate in an intake interview, and provide documentation: https://ods.rutgers.edu/students/documentation-guidelines. If the documentation supports your request for reasonable accommodations, your campus’s disability services office will provide you with a Letter of Accommodations. Please share this letter with your instructors and discuss the accommodations with them as early in your courses as possible. To begin this process, please complete the Registration form on the ODS web site at: https://ods.rutgers.edu/students/registration-form.
+
+
+
+
+Class Schedule
+
+The following class schedule is subject to change. It is likely that at least one class will be canceled due to travel. In that case, I will make arrangements for self and group study. Reading assignments should be completed prior to each lecture.
+
+
+
+Class
+Date
+Assignments & Readings
+Readings
+Homework
+
+
+Jan
+
+
+
+
+
+
+1
+21
+Getting Started and EDA
+5.1-5.8
+
+
+2
+28
+Hypothesis Testing
+6.1-6.4
+
+
+
+
+Feb
+
+
+
+
+
+
+3
+4
+One-Way ANOVA
+7.1-7.6
+#1
+4
+11
+Threats to Validity;
+8.1-8.8
+
+
+5
+18
+Simple Linear Regression
+9.1-9.10
+#2
+6
+25
+Analysis of Covariance
+10.1-10.5
+
+
+
+
+March
+
+
+
+
+
+
+no class
+3
+Two-Way ANOVA
+
+
+#3
+8
+10
+MIDTERM EXAM (Classes 1-6)
+
+
+
+
+no class
+17
+Statistical Power
+12.1-12.8
+#4
+9*
+24
+Contrasts & Custom Hypotheses
+13.1-13.4
+
+
+10
+31
+Within-Subjects Designs
+14.1-14.6
+#5
+
+
+April
+
+
+
+
+
+
+11
+7
+Mixed Models
+15.1-15.8
+
+
+12
+14
+Categorical Outcomes
+16.1-16.2
+#6
+13
+21
+Logistic Regression/Propensity Scores
+16.3
+
+
+14
+28
+Propensity Score Design
+TBA
+#7
+
+
+May
+
+
+
+
+
+
+15
+5
+FINAL EXAM (Classes 7, 9-14)
+
+
+
+
+
+* Homework on statistical power due by class time
+
+
+? Demonstrate various invention practices: brainstorming, free writing; outlining, journaling
+? Demonstrate ability to write in various modes: personal narrative, expository,
+analytical, descriptive, argument
+? Demonstrate the phases of writing: draft, revision, final copy
+? Explore sources of writing: reading, thinking, analyzing, discussion
+? Create a thesis statement that suggests the focus of the paper; does not point out the obvious,
+and is written as a sentence.
+? Develop and include enough details and examples to support the identified thesis and
+reinforce focus
+? Demonstrate various patterns of organization and
+use the organization pattern that suits your identified purpose & audience.
+? Illustrate the concept of Audience in your writing. 
+2
+“I simply kept my goal in mind and persisted. Persistence is a large part of writing.” – N. Scott Momaday
+? Artfully combine Audience, Purpose, and Tone in compositions written in and outside of class
+? Write in a vocabulary appropriate to your subject and identified audience.
+? Begin and conclude a paper effectively.
+? Show effective control of mechanics: paragraphing, punctuation, spelling.
+? Differentiate between key ideas and supporting details in reading
+? Locate the thesis statement in reading assignments
+? Practice good group skills: how to give useful feedback, and how to make use of
+feedback you receive
+? Develop self-assessment skills
+How Outcomes will be met
+Basic Composition teaches students writing skills necessary for college success, with a primary focus on
+grammar and composition. Among the many other writing-centered activities we’ll engage in, this class
+requires students to practice brainstorming, free-writing, sentence construction (in the context of short
+writing assignments), paragraph construction, the organization of ideas, and the several types of,
+purposes of, and audiences for general essays. Students will build on these basic skills by planning,
+writing, and revising essays, and experiencing writing and reading as a multi-step process. As an added
+bonus, students will also learn the process and value of peer-to-peer editing. Prerequisite: Placement by
+assessment or ENGL 092 or 093 with a C- or better.
+Grading
+I want you to know what I hope you will achieve in your writing; therefore, I provide grading rubrics for
+all essay assignments. No grade-change (adjustment) request is entertained unless you detect clerical
+error. I will discuss how I arrived at your grade, but I will not change it. Any questions you have about
+your grades or how I have graded your work must be brought to me as soon as you have a concern.
+Your final grade in the class will be calculated and recorded based on the following formula:
+A 93-100% B+ 88-89.9 C+ 78-79.9 D+ 67-69.9
+A- 90-92.9 B 83-87.9 C 73-77.9 D 63-66.9
+B- 80-82.9 C- 70-72.9 D- 60-62.9
+F below 59.9
+As found in the course weekly schedule, SPECIFIC ASSIGNMENT GRADES total points possible:
+100 word biography: 5 points
+Cover Letter: 5 points
+3 Major Writing Assignments (Personal Essay; Argumentative Case Study; Expository Essay):
+First drafts: You must turn in a first draft in order to turn in a final draft for a grade
+Final drafts (3): 5 points per essay X 3 = 15 points
+NOTE: If you do not turn in a first draft of your essay assignments I will not consider any final
+drafts, meaning you will receive zero points total for the writing essay assignment. I should also 
+3
+“I simply kept my goal in mind and persisted. Persistence is a large part of writing.” – N. Scott Momaday
+note that I will not pass any student in my English 101 courses who does not complete all major
+essay assignments, the core of this composition course (personal essay, argumentative case
+study, and expository essay). If you do not turn in all 3 of your major essays, you agree that you
+will receive an I (INCOMPLETE) for the course.
+Grammar Assessment
+5 points
+Collaborative Essay Memos
+First Memo: 5 points
+Second Memo: 5 points
+E-Copy Portfolio
+5 points to cover each major assignment (3 Major Essays and 2 Collaborative Memos), 1 point each
+(if assignments were not completed and turned in to me by the due dates listed in syllabus, you may not
+include them in your final e-portfolio, meaning you will lose the points for that assignment)
+2-page Final Student Self-Assessment Essay (to be completed outside of class)
+5 points
+Class Participation: 50 points: these activities include attending class and participating in class
+discussions; all peer editing sessions; and Canvas discussion board writing responses. Points assigned as
+follows:
+Class discussions: 10 points
+Peer editing: 10 points per session X 3 sessions: 30 points
+Writing Responses on Canvas Discussion Board: 5 responses X 2 points each: 10
+TOTAL POINTS POSSIBLE: 100 points
+Books and Materials Required
+REQUIRED TEXTBOOKS:
+There are no required texts for this course. I will assign and post all reading on the course site page, so
+be sure to check the course site page for weekly readings.
+In order to complete some assignments, you will need to watch videos on YouTube. If you do not have
+access to a computer or the internet, you may watch all assigned videos in the BC library.
+Classroom Learning Atmosphere
+Instructor’s Expectation
+IMPORTANT: The course will use a sequential building method and your final grade will be based, in
+part, on the construction of a portfolio of individual student work, an artifact you will generate and
+track with each week’s work. By June 2013, your student e-portfolio ought to demonstrate that you can
+analyze your own writing on a sentence-by-sentence level, then on the paragraph level, and finally, in 
+4
+“I simply kept my goal in mind and persisted. Persistence is a large part of writing.” – N. Scott Momaday
+the context of the college essay and shorter written assignments. Throughout the course of the term I
+will assign some writing topics; other in-class writing assignments will allow for student choice in subject
+matter.
+Your e-portfolio will include 2-page self-assessment essay, which will be written outside of class and
+will serve as your final exam. This final assignment will give you the opportunity to reflect on your
+writing progress and to identify writing goals and challenges for the future.
+READING LIFE: To be a strong writer you must be a strong reader.
+Critical to your success in this class is your commitment to reading. You will be expected to read from,
+engage with, and discuss assigned essays as well as any in-class readings. You will also work with your
+Collaborative Work Groups twice, to submit two Collaborative Essay Memos.
+PARTICIPATION
+I want you to be here, I want you to succeed, and I presume all students are adequately prepared for
+class participation and ready to engage fully and enthusiastically – I grade participation accordingly.
+Students are expected to contribute actively to a positive classroom environment. Absences, late
+arrivals and early departures, inappropriate use of cell phones or laptops, lack of preparation,
+inattentiveness, or unwillingness to discuss readings will affect your ability to contribute to a positive
+classroom environment.
+SUBMITTING WORK
+For purposes of grading, you will not turn in hard copies of your work to me. To avoid glitches, you will
+not upload your written work to Canvas.
+You will email me all of your written assignments by the due dates and times listed on the
+syllabus.
+For purposes of peer-to-peer feedback, you will give hard copies to your peers so we can workshop
+those essays in class. To avoid issues of lost work:
+? Save local copies, or printouts, of required readings (including the syllabus) so that you can do
+your work even if the internet is down.
+? Save all work, including all drafts, to a flash drive.
+? Get in the habit of e-mailing drafts to yourself, so that you can retrieve them from your archives
+if your computer crashes or you lose your flash drive.
+Your in-class written work will be achieved using paper and pen, so please bring both to each class.
+WORK SUBMISSION POLICIES: THESE ARE IMPORTANT
+SUBMISSION POLICY #1: All of your out of class written assignments must be turned in to me, no later
+than 11:55pm on the specified due date (due dates fall on your class days), via my email address:
+danielle.newton@bellevuecollege.edu. For my organizational purposes, the subject line of your email(s)
+must include your name, course number, class days, and assignment type. Example: 
+5
+“I simply kept my goal in mind and persisted. Persistence is a large part of writing.” – N. Scott Momaday
+Subject: Last name, First Name, Eng 101 DAILY, Personal Bio
+SUBMISSION POLICY #2: You must follow the ESSAY SUBMISSION GUIDELINES for each of the essays
+you turn in to me, including all first drafts. You can find the Essay Submission Guidelines on our Canvas
+course page.
+IMPORTANT: I ask students to follow submission guidelines to help me with my organization, so I can
+return your work to you in a timely manner; more importantly, however, I ask students to follow these
+guidelines so that you can get used to the importance of attention to detail, which is critical to success in
+work environment. As such, I will not read, grade, or provide feedback on assignments that do not
+adhere to this submission rule. Your work will be considered late and will be penalized accordingly (see
+LATE WORK policy).
+I will return all of your graded work to you via your email address.
+Please save all of your emails to me and all of the emails I send to you, so there is no confusion over
+whether or not you have turned in an assignment and no confusion over whether or not I have returned
+your assignments with grades. I save all emails to students until the end of the quarter.
+PLAGIARISM: Please don’t!
+Plagiarism is the use of someone else’s words, ideas, or information as your own or allowing someone
+else to use your words, ideas, or information as their own. Please document your sources carefully.
+According to Bellevue Community College policy, for plagiarism or cheating, you may be given an “F”
+grade for an individual assignment or the entire course. In addition, the incident will be reported to the
+Dean of Student Success. ***PLEASE NOTE: each of your essays, including your Collaborative Essay
+Memos, will be submitted by me to www.turnitin.com in order to check for plagiarism errors.
+ATTENDANCE AND ABSENCES
+I manage the classroom as a professional work environment laboratory; that is, I strive to create a realworld
+environment, mirroring an office setting where professionalism at every level is of the utmost
+importance. Because showing up to work on time, daily, is important, for our class I will promptly take
+roll at the beginning of each class period. If you come to class after I have called roll and marked you
+absent, you are still absent, which means you have missed a day of work.
+Students are expected to attend every class, complete the required assignments before every session,
+bring the assigned texts and materials to class, and participate in class discussion. You are allowed four
+(4) absences from the class without penalty. After four (4) absences, I will drop your final grade in the
+class by one letter grade and so on for each subsequent absence.
+For instance, if you are earning an A in the course and you miss a fifth class, you will earn no greater
+than a B in the course. Your sixth absence also results in a letter grade drop, the 7th absence, etc. Keep in
+mind that with planned Bellevue College campus holidays, and my absence for a conference in February,
+you will have ample outside of class time to take a deep breath. Use your time well – come to class!
+6
+“I simply kept my goal in mind and persisted. Persistence is a large part of writing.” – N. Scott Momaday
+Note: I do not need to hear from you if you will miss class and it will not be possible to arrange make-up
+assignments for due dates or in-class activities/required participation/presentations that you miss.
+LATE WORK
+Deadlines are essential to any professional workplace and this course integrates the standards of
+professional writing practices. Late, incomplete, or missing assignments will not be given credit. It is the
+responsibility of the student to keep track of their assignments, including the submission time and date.
+It is your responsibility to ensure that I receive your assignment on time. “My computer is broken” or “I
+don’t have the Internet at home” and similar phrases are NOT valid reasons for failure to complete any
+work. If you’re having technology problems, plan ahead: Internet access is available on campus and at
+public libraries. If you are having trouble completing an assignment, make an appointment to talk with
+me. Think of me as a boss, of sorts. If your boss gives you an assignment to complete, and you’re not
+sure you can do it on time, wouldn’t you let your boss know?
+With the exception of in-class work, which you cannot make up, I give you ONE ‘pass’ on my ‘noexceptions
+to late written work’ policy, with the grade lowered by one grade, with a one-day window.
+For instance, if you have an essay due on April 25 you may turn your essay in to me on April 26, but you
+also agree that your final grade for that essay will be lowered one letter grade. For example, let’s say
+you turned in an essay that I believe has earned an A grade. Because it is late you will receive no higher
+than a B. You will have also used your one free pass for late written work.
+I do not entertain requests for extra credit or rewriting essays for a higher grade.
+PERSONAL TECHNOLOGY
+There will be no need to use your laptops or iPads, etc. in class, so please leave those in your bags or
+elsewhere.
+My pet peeve is cell phone use in class. Turn off all cell phones and iPods, etc. It’s never fine to have
+a cell phone ring during class time; never fine to be on the phone during class time, texting, surfing the
+net, or otherwise, unless you have my consent first.
+IMPORTANT: if you are using your cell phone during class without my permission, you are most
+certainly not ‘present’ in class. I will not ask you to put your cell phone away; instead, I will mark you
+absent for the day and place CP next to your name to indicate ‘cell phone’ so as to avoid confusion
+about why you are marked absent. By remaining in my course, you agree to be marked absent if you
+are on your cell phone during class.
+Affirmation of Inclusion
+Bellevue College is committed to maintaining an environment in which every member of the campus
+community feels welcome to participate in the life of the college, free from harassment and
+discrimination. We value our different backgrounds at Bellevue College, and students, faculty, staff
+members, and administrators are to treat one another with dignity and respect.
+http://bellevuecollege.edu/about/goals/inclusion.asp
+7
+“I simply kept my goal in mind and persisted. Persistence is a large part of writing.” – N. Scott Momaday
+Division Statements
+? Arts & Humanities Division Policy Regarding Values Conflicts Essential to a liberal arts
+education is an open-minded tolerance for ideas and modes of expression that might conflict
+with one’s personal values. By being exposed to such ideas or expressions, students are not
+expected to endorse or adopt them but rather to understand that they are part of the free flow
+of information upon which higher education depends. To this end, you may find that class
+requirements may include engaging certain materials, such as books, films, and art work, which
+may, in whole or in part, offend you. These materials are equivalent to required texts and are
+essential to the course content. If you decline to engage the required material by not reading,
+viewing, or performing material you consider offensive, you will still be required to meet class
+requirements in order to earn credit. This may require responding to the content of the
+material, and you may not be able to fully participate in required class discussions, exams, or
+assignments.
+? Information about Bellevue College's copyright guidelines can be found at:
+http://bellevuecollege.edu/lmc/links/copyright.html
+? Want to avoid plagiarism> A good resource is the Writing Lab:
+http://bellevuecollege.edu/writinglab/Plagiarism.html
+? Need help with writing or other tutoring? Visit the Academic Success Center.
+ http://bellevuecollege.edu/asc/
+Student Code
+“Cheating, stealing and plagiarizing (using the ideas or words of another as one’s own without crediting
+the source) and inappropriate/disruptive classroom behavior are violations of the Student Code of
+Conduct at Bellevue College. Examples of unacceptable behavior include, but are not limited to: talking
+out of turn, arriving late or leaving early without a valid reason, allowing cell phones/pagers to ring, and
+inappropriate behavior toward the instructor or classmates. The instructor can refer any violation of the
+Student Code of Conduct to the Vice President of Student Services for possible probation or suspension
+from Bellevue College. Specific student rights, responsibilities and appeal procedures are listed in the
+Student Code of Conduct, available in the office of the Vice President of Student Services.” The Student
+Code, Policy 2050, in its entirety is located at:
+http://bellevuecollege.edu/policies/2/2050_Student_Code.asp
+Important Links
+Bellevue College E-mail and access to MyBC
+All students registered for classes at Bellevue College are entitled to a network and e-mail account. Your
+student network account can be used to access your student e-mail, log in to computers in labs and
+classrooms, connect to the BC wireless network and log in to MyBC. To create your account, go to:
+https://bellevuecollege.edu/sam . BC offers a wide variety of computer and learning labs to enhance
+learning and student success. Find current campus locations for all student labs by visiting the
+Computing Services website.
+8
+“I simply kept my goal in mind and persisted. Persistence is a large part of writing.” – N. Scott Momaday
+Disability Resource Center (DRC)
+The Disability Resource Center serves students with a wide array of learning challenges and disabilities.
+If you are a student who has a disability or learning challenge for which you have documentation or have
+seen someone for treatment and if you feel you may need accommodations in order to be successful in
+college, please contact us as soon as possible. If you are a student with a documented autism spectrum
+disorder, there is a program of support available to you. If you are a person who requires assistance in
+case of an emergency situation, such as a fire, earthquake, etc, please meet with your individual
+instructors to develop a safety plan within the first week of the quarter.
+The DRC office is located in B 132 or you can call our reception desk at 425.564.2498. Deaf students can
+reach us by video phone at 425-440-2025 or by TTY at 425-564-4110. Please visit our website for
+application information into our program and other helpful links at www.bellevuecollege.edu/drc
+Public Safety
+The Bellevue College (BC) Public Safety Department’s well trained and courteous non-commissioned
+staff provides personal safety, security, crime prevention, preliminary investigations, and other services
+to the campus community, 24 hours per day, 7 days per week. Their phone number is 425.564.2400.
+The Public Safety website is your one-stop resource for campus emergency preparedness information,
+campus closure announcements and critical information in the event of an emergency. Public Safety is
+located in K100 and on the web at: http://bellevuecollege.edu/publicsafety/
+Final Exam Schedule
+This daily course’s class final: Friday, June 14, 2013, from 11:30 a.m. – 1:20 p.m.
+Academic Calendar
+The Bellevue College Academic Calendar is separated into two calendars. They provide information
+about holidays, closures and important enrollment dates such as the finals schedule.
+? Enrollment Calendar - http://bellevuecollege.edu/enrollment/calendar/deadlines/. On this
+calendar you will find admissions and registration dates and important dates for withdrawing
+and receiving tuition refunds.
+? College Calendar - http://bellevuecollege.edu/enrollment/calendar/holidays/0910.asp. This
+calendar gives you the year at a glance and includes college holidays, scheduled closures,
+quarter end and start dates, and final exam dates.
+INSTRUCTOR NOTE: The public nature of class writing and discussions
+Please consider every piece of writing you do for this class to be “public property.” Part of becoming a
+good writer is learning to appreciate the ideas and criticisms of others, and in this course our purpose is
+to come together as a writing community. Remember that you will be expected to share your writing
+with others, so avoid writing about things that you may not be prepared to open to public scrutiny, or
+things you feel so strongly about that you are unwilling to listen to perspectives other than your own.
+This does not mean that you are not entitled to an opinion but that you adopt positions responsibly, 
+9
+“I simply kept my goal in mind and persisted. Persistence is a large part of writing.” – N. Scott Momaday
+contemplating the possible effect on others. Please be aware that some course content may be
+considered sensitive; please be prepared to discuss all topics that arise with open-minded maturity.
+ENGLISH 101 WEEKLY SCHEDULE:
+We will use our Canvas Course Page this quarter to help guide and manage classroom instruction. I have
+outlined the first three weeks of instruction, to give students an idea of how the course will develop
+over the quarter. I will create modules of weekly work on our Canvas course page, starting with WEEK
+ONE through WEEK ELEVEN. I will open modules each Friday for the next week’s work.
+NOTE: We will not meet in class on Fridays. Instead, you will have Discussion Board assignments on
+our Canvas course page to complete. I will be ‘present’ with you on our Canvas course page each Friday.
+NOTE: I reserve the right to change (and will alert you to any changes) to this course schedule.
+WEEK ONE (April 1 – April 5): GETTING STARTED
+M: Review syllabus/readings/course site page
+ Student Interest Survey
+T: Grammar Assessment/Annotations Techniques/Bring 2 questions to class April 3
+W: Annotation Techniques/Student questions/Peer to Peer Sign-up
+TH: Assigned Reading: “The Curious Case of Nicki Minaj”: Annotate and bring to class April 8
+FR: CANVAS DAY: DUE by 11:55 pm.: 100-word Personal Biography
+WEEK TWO (April 8- April 12): ELEMENTS OF EFFECTIVE WRITING
+M: Annotation Discussion: Group Activity: “The Curious Case of Nicki Minaj”
+ Discussion: Assignment: 1-page Cover Letter
+ Assigned Reading: Topic Sentence; Paragraph Structure; Support and Analysis; Concluding Sentence:
+Bring 2 questions to class April 9
+T: Sign-up and Discussion: 2-page Collaborative Essay Memo (Collaborative Work groups): instructor
+assigns essay
+Discussion: Topic Sentence; Paragraph Structure; Support and Analysis; Concluding Sentence;
+W: Discussion: Invention techniques: (Brainstorming, Outlining, Free Writing)
+TH: Discussion: Mind Mapping
+F: CANVAS DAY: Due by 11:55 p.m.: 1-page Cover Letter
+10
+“I simply kept my goal in mind and persisted. Persistence is a large part of writing.” – N. Scott Momaday
+WEEK THREE (April 15-April 19): COLLABORATIVE WORK
+M: Discussion: IGNITE: 22 Minute Meeting/Nicole Steinbok (Collaborative Work)
+ Discussion: Personal work habits
+T: Discussion: Collaborative Work Groups: Brainstorming and Outlining
+W: Discussion: Collaborative Work Groups: Planning
+TH: In-class Activity: Group Contract to Instructor
+ Discussion: Assignment: Personal Essay
+F: CANVAS DAY: Due by 11:55 p.m.: DISCUSSION BOARD: Collaborative Work Self-Assessment
+
+
+NOTE:
+We will start using our Canvas course page when class starts April 1, 2013. To move the class
+fully on to Canvas, all information and assignments for WEEK ONE – WEEK ELEVEN will be
+posted on our Canvas Course Page. While I have outlined the first three weeks’ work in this
+syllabus, the remaining weeks’ themes are as follows and weekly outlines will appear on our
+Canvas course page:
+? WEEK FOUR: WRITING ABOUT THE ‘SELF’: THE PERSONAL ESSAY
+? WEEK FIVE: DEVELOPING EFFECTIVE ARGUMENTS
+? WEEK SIX: DEVELOPING EFFECTIVE ARGUMENTS
+? WEEK SEVEN: PEER TO PEER EDITING
+? WEEK EIGHT: THE EXPOSITORY ESSAY
+? WEEK NINE: THE EXPOSITORY ESSAY
+? WEEK TEN: PEER TO PEER EDITING
+? WEEK ELEVEN: FINAL EXAMS
+
+
+
+Teacher: Ms. Sujata Sangwan           
+Room: 203                  Voicemail: 612/692-1499   Email:sujata.sangwan@mpls.k12.mn.us
+Course description: Welcome to 11th Grade U.S History.  This course offers a colorful and exciting section of social studies subjects.  By the end of the year, you will have a solid foundation for entering 12th grade.
+Course Objectives: The primary objective is to prepare you to have skills for 12th grade. We focus on academic skills, writing, time management and inter-personal communication skills. Small and large group discussions are a part of classroom learning.  All students are expected to participate in them. This course is writing intensive. You will regularly practice your writing skills. In-class research essays, participation, tests and projects make up a majority of your quarter grade.
+Our class in U.S History moves very quickly and covers a lot of material. Therefore, it is important not only that students keep pace with the course, ask questions and seek additional help when needed.  Ms. Sangwan is willing to meet with students after school with requested appointments on Mondays.
+ 
+By the end of this year, you will:
+ 
+ØDemonstrate and strengthen your ability to write formal essays/research papers.
+ØStrengthen your note-taking skills.
+ØCompare/contrast/synthesize and analyze information.
+ØExercise critical thinking and communication skills in formal and informal discussions.
+ 
+You need the following to have in class each day:
+Blue or Black ink pens and pencils.
+Colored pencils and markers      
+Notebook for taking notes in class.                     
+Student Planner and ID
+ 
+What you should have for regular use in class:
+A dictionary and/or thesaurus   
+A copy of APA Handbook for Writers of Research Papers
+ 
+COURSE POLICIES: Course policies are the rules and guidelines our class follows, in addition to those established by Patrick Henry High School (All Patrick Henry rules and expectations are enforced in Ms. Sangwan's classroom).  These policies are consistently enforced throughout the school year and are reviewed at the beginning of each quarter.  Each student is expected to know, understand and follow these policies.  If you feel class or school policies need clarification speak with Ms. Sangwan directly.
+ATTENDANCE: Prompt daily attendance is expected.  All students must be seated in the classroom and prepared to learn when the bell rings. Each tardy will cost you academic points and negatively influence your grade. According to Patrick Henry policy, you fail the course if you have more than seven absences during an academic quarter. Approved school activities do not count against attendance, provided the student attends the activities and is doing satisfactory work in class.  Additionally, if a student is aware of up-coming absences, it is her/his responsibility to inform Ms. Sangwan before the absences and arrange make-up or alternative work. A friend in class is helpful to collect materials and information if you are absent.                              
+CLASSROOM BEHAVIOR: You are a member of a community of learners.  For any community to thrive, certain concepts must be embraced.  In our community, I expect the following general behavior of all students.
+RESPECT:  All students will respect themselves, their community members and their learning environment.
+READINESS:  All students must attend class everyday and ready to actively participate in daily activities.
+RESPONSIBILITY:  All students must accept responsibility for themselves and their actions.
+ 
+Active participation and preparedness is expected at all times!
+ 
+        No distracting items are allowed in the classroom (i.e. headwear, coats, backpacks, food, beverages, chains, purses, electronic devices, pictures, notes, yearbooks, magazines and catalogs).
+        Appropriate language will be used in the classroom—no swearing or other offensive remarks will be allowed.
+        You are responsible for your academic progress and communication with Ms. Sangwan about problems or struggles is expected from you.
+ 
+CHEATING, COPYING AND PLAGIARISM: 
+Cheating, copying and plagiarism are serious acts of academic dishonesty that are not tolerated.  All team teachers, family members of students involved and the program coordinator will be informed of such behavior.  
+Students who cheat receive a zero for the assignment or exam. Students involved in copying of work receive a zero for the assignment or exam, including any student allowing the copying to take place. Students who plagiarize receive a failing grade for the quarter.    Plagiarism is the use of another’s ideas or expression without appropriate acknowledgement of the source.  Examples of plagiarism include failure to give appropriate acknowledgement when repeating another’s phrase, sentence or paragraph; failure to give appropriate acknowledgement when paraphrasing another’s thesis or argument; failure to give appropriate acknowledgement when presenting another’s line of thinking; or, turning in a paper for a current course that was written for another course.   
+Plagiarism, like cheating and copying, results in serious consequences. If students or family members have questions about this, please talk to Ms. Sangwan.  All students are expected to achieve at the level of 60% or better in this class without factoring in extra credit. As a general rule, students should not expect extra credit.  Opportunities for extra credit related to course content may arise throughout the year. Additionally, students choosing to drop their lowest score of the quarter are not allowed any extra credit points.  
+ 
+HOMEWORK: All homework assignments must be completed on the scheduled due date. Unless otherwise noted, assignments are collected at the beginning of the class period. ALL ASSIGNMENTS ARE ACCEPTED WITH 25% POINTS DEDUCTED ON THE NEXT DAY AND NO LATER.  Students receive reading packets with excerpts from a variety of sources as well as primary source documents.  Course content has been put together through a variety of sources and is regularly updated as new and reliable information is made available. Reading packets made available to students may be done so in class-sets. Therefore, it is necessary that students use the reading time given in class effectively.
+ 
+GRADING SCALE IN PERCENTAGES:
+93-100%=A
+ 
+90-92%=A-
+ 
+86-90%=B+
+ 
+83-86%=B
+ 
+80-82%=B-
+ 
+77-79%=C+
+ 
+73-76%=C
+ 
+70-72%=C-
+ 
+67-69%=D+
+ 
+63-66%=D
+ 
+60_62%=D-
+ 
+59% or below=F
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+High School United States History
+MPS Curriculum Map
+
+Quarter I
+ 
+Essential Question:
+·        How did the European conquest of North America transform indigenous civilizations, institutionalize African slavery, and ultimately lead to an independent and democratic United States?
+ 
+Units:
+1. Indigenous People of North America
+2. Three Worlds Converge
+3. Colonial Development
+4. American Revolution
+5. Foundations of the American Government and Nation
+ 
+ 
+Quarter II
+ 
+Essential Question:
+·        In what ways was the Civil War inevitable?
+ 
+Units:
+6. Westward Expansion
+7. Innovations and Inventions
+8. Early Reform Movements
+9. Causes of the Civil War
+10. Civil War and Reconstruction
+ 
+ 
+ 
+Quarter III
+ 
+Essential Question:
+·        What role did industrial capitalism play in American life and in the United States’ rise as a world power?
+ 
+Units:
+11. Industrialization and Immigration
+12. Imperialism and World War I
+13. The Twenties and Thirties
+ 
+ 
+ 
+Quarter IV
+ 
+Essential Question:
+·        How have postwar social, political, and economic forces changed the United States internally and in its relationships with the rest of the world?
+ 
+Units:
+14. World War II
+15. The Cold War Era
+16. The Rights Revolution
+17. Vietnam and its Aftermath
+18. Contemporary America
+ 
+Floating Unit in all quarters: Historical Inquiry
+ 
+
+ 
+ 
+ 
+Ms Sangwan: U.S. History Quarter I syllabus
+ 
+Essential Question:
+·        How did the European conquest of North America transform indigenous civilizations, institutionalize African slavery, and ultimately lead to an independent and democratic United States?
+ 
+Units in quarter I:
+1. Indigenous People of North America
+2. Three Worlds Converge
+3. Colonial Development
+4. American Revolution
+5. Foundations of the American Government and Nation
+ 
+1. Indigenous People of North America
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand the variety of indigenous cultures in North America before and during European exploration.
+? Why were indigenous cultures unable to sustain themselves in the face of European contact?
+ê The student will demonstrate knowledge of indigenous cultures in North America prior to and during western exploration.
+1. Students will identify important cultural aspects and regional variations of major North American Indian nations.
+ 
+2. Three Worlds Converge
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand the cultural, technological, economic, agricultural, and political developments as the peoples and the cultures of Africa, America, and Europe converge.
+? What was it about European civilization that allowed it to solidify control over other regions of the world?
+ê The student will understand how European exploration and colonization resulted in cultural and ecological interactions among previously unconnected peoples.
+1. Students will identify the stages and motives of European oceanic and overland exploration from the 15th to the 17th centuries.  
+2. Students will describe the consequences of early interactions between Europeans and American Indian nations.  
+3. Students will describe key characteristics of West African kingdoms and the development of the Atlantic slave trade.
+ê The student will understand the economic development of the English colonies in North America and the exploitation of enslaved Africans.
+1. Students will describe and evaluate the enslavement of Africans, the Middle Passage and the use of slave labor in European colonies. 
+ 
+3. Colonial Development
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand the social, political, and economic factors that created regional differences in the American colonies. 
+? Students will understand the implementation of the enslavement of Africans and the expulsion of native peoples.
+?How did colonial regions develop in different ways?
+ê The student will demonstrate knowledge of the colonies and the factors that shaped colonial North America.
+1. Students will compare and contrast life within the colonies and their geographical areas, including New England, Mid-Atlantic, and Southern colonies, and analyze their impact.  
+2. Students will identify the growing differences and tensions between the European colonies, England and American Indian Nations.
+ 
+4. American Revolution
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand the causes, course, and consequences of the American Revolution.
+? How did ideas and events lead to the American struggle for independence?
+ê The student will demonstrate knowledge of the causes, course, and consequences of the American Revolution.
+1. Students will analyze the major economic, political, and philosophical conflicts leading to the American Revolution including the roles of the First and Second Continental Congresses and the Declaration of Independence. 
+2. Students will explain how and why the Americans won the war against superior British resources, analyzing the role of key leaders, major campaigns and events, and participation by ordinary soldiers and civilians. 
+3. Students will explain the impact of the Revolutionary War on groups within American society, including loyalists, patriots, women and men, Euro-Americans, enslaved and free African Americans, and American Indians.
+ 
+5. Foundations of the American Government and Nation
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand the principles and ideals that shaped the development of the United States’ democratic institutions.
+? How did its history lead to a unique form of democracy for the United States?
+ê The student will understand the foundation of the American government and nation.
+1. Students will identify and explain the basic principles that were set forth in the documents that declared the nation’s independence (the Declaration of Independence, inalienable rights and self-evident truths) and that established the new nation’s government (the Constitution).
+2. Students will describe and evaluate the major achievements and problems of the Confederation period, and analyze the debates over the Articles of Confederation and the revision of governmental institutions that created the U.S. Constitution and the Bill of Rights, and the interpretive function of the Supreme Court. 
+3. Students will describe and explain the emergence of the first American party system.    
+ 
+ 
+ 
+ 
+Ms Sangwan: U.S. History Quarter II syllabus
+ 
+Quarter Two Essential Question:
+·        In what ways was the Civil War inevitable?
+Units:
+6. Westward Expansion
+7. Innovations and Inventions
+8. Early Reform Movements
+9. Causes of the Civil War
+10. Civil War and Reconstruction
+ 
+6. Westward Expansion
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand the demographic, economic, and political forces that led to continental expansion and the consequences of that expansion.
+? How does this term “manifest destiny” capture the forces that led to continental expansion?
+ê The student will demonstrate knowledge of the early republic and how territorial expansion affected foreign relations.
+1. Students will describe the causes and analyze the effects of the Louisiana Purchase, the War of 1812, and the Monroe Doctrine.       
+2. Students will analyze the impact of territorial expansion on American Indian nations and the evolution of federal and state Indian policies. 
+3. Students will analyze the causes and consequences of U.S. geographic expansion to the Pacific, including the concept of Manifest Destiny and the Mexican-American War.
+ê The student will analyze the process of westward expansion in the late 19th century.
+1. Students will demonstrate knowledge of the effects of post-Civil War westward expansion including the resulting conflicts with American Indian nations.
+ 
+7. Innovations and Inventions
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand how the innovations and inventions in industry, technology, and transportation impacted life in the United States.
+? How does innovation express the rise of developing capitalism in the United States?
+ê The student will understand how explosive growth (economic, demographic, geographic) and technological innovation transformed American society.
+1. Students will describe and analyze the impact of innovations in industry, technology and transportation on life in America.
+2. Students will examine demographic growth and patterns of population change and their consequences for American society before the Civil War. 
+ 
+8. Early Reform Movements
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand the sources, characteristics, and effects of cultural, religious, and social reform movements – including the abolition, temperance, and women’s rights movements.
+? How do the various reform movements show how democratic ideas and institutions are dynamic rather than static?
+ê The student will understand the sources, characteristics, and effects of antebellum reform movements.
+1.  Students will understand the sources, characteristics and effects of cultural, religious and social reform movements, including the abolition, temperance, and women’s rights movements.
+ê The student will understand the extension, restriction, and reorganization of political democracy after 1800.
+1. Students will describe and analyze changes in American political life including the spread of universal white male suffrage, restrictions on free African Americans, and the emergence of the Second Party System. 
+ 
+9. Causes of the Civil War
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will be able to understand the political impacts of the growing sectional polarization evidenced in key events including the Missouri Compromise, the Compromise of 1850, The Fugitive Slave Law, the rise of the Republican Party, and secession.
+? How did the economic, social, and cultural differences between the North and the South result in irreconcilable differences leading to war?
+ê The student will demonstrate knowledge of the long- and short-term causes of the Civil War
+1. Students will identify and explain the economic, social, and cultural differences between the North and the South.  
+2. Students will understand and analyze the political impact of debates over slavery and growing sectional polarization in key events including the Missouri Compromise, the Compromise of 1850 and the Fugitive Slave Law, the rise of the Republican party, the Southern secession movement and the formation of the Confederacy.
+ 
+10. Civil War and Reconstruction
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand how the differences in resources of the Union and Confederacy affected the course of the war and Union victory. 
+? Students will understand and explain the political impact of the war and its aftermath in Reconstruction.
+? How did the Civil War lead to the reform of the American political system as a more democratic government and one more consistent with the original ideals?
+ê The student will understand the course, character, and outcome of the Civil War.
+1. Students will identify events and leaders of the war, and analyze how the differences in resources of the Union and Confederacy (economy, technology, demography, geography, political and military leadership) affected the course of the war and Union victory. 
+2. Students will describe and explain the social experience of the war on battlefield and home front, in the Union and the Confederacy.
+3. Students will analyze the significance of Lincoln’s Gettysburg Address and its views of American political life.
+ê The student will demonstrate knowledge of the consequences of Civil War and Reconstruction.
+1. Students will describe the content of and reasons for the different phases of Reconstruction, and analyze their successes and failures in transforming social and race relations.
+2. Students will understand and explain the political impact of the war and its aftermath in Reconstruction, including emancipation and the redefinition of freedom and citizenship, expansion of the federal bureaucracy; expansion of federal authority and its impact on states’ rights.
+ 
+ 
+Ms Sangwan: U.S. History Quarter III syllabus
+ 
+Quarter Three Essential Question:
+·        What role did industrial capitalism play in American life and in the United States’ rise as a world power?
+Units:
+11. Industrialization and Immigration
+12. Imperialism and World War I
+13. The Twenties and Thirties
+ 
+11. Industrialization and Immigration
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand how the forces of industrialization and immigration, transformed the United States from an agrarian society to a modern industrial nation and the problems and reforms that followed that transformation.
+? How do the forces of industrialization and immigration, transform the United States from an agrarian society to a modern industrial nation and what problems and reforms followed that transformation?
+ê The student will describe and analyze the linked processes of industrialization and urbanization after 1870.
+1. Students will demonstrate knowledge about how the rise of corporations, heavy industry, and mechanized farming transformed the American economy, including the role of key inventions and the growth of national markets.   
+2. Students will demonstrate knowledge of the rapid growth of cities and the transformation of urban life, including the impact of migration from farms and new technologies, the development of urban political machines, and their role in financing, governing, and policing cities.
+ê The student will demonstrate knowledge of the causes and consequences of immigration to the United States from 1870 to the First World War.
+1. Students will demonstrate knowledge of the massive wave of “New” immigration after 1870, its differences from the “Old” immigration, and its impact on new social patterns, conflicts, and ideas of national unity.
+ê The student will understand the origins of racial segregation.
+1. Students will demonstrate knowledge of the imposition of racial segregation, African American disfranchisement, and growth of racial violence in the post-reconstruction South, the rise of “scientific racism,” and the debates among African-Americans about how best to work for racial equality.
+ê The student will describe how industrialization changed nature of work and the origins and role of labor unions in the 1870s, 1880s, and 1890s.
+1. Students will demonstrate knowledge about how the rise of industry changed the nature of work in factories, the origins of labor unions, and the role of state and federal governments in labor conflicts.
+ê The student will understand the changing dynamics of national politics in the late 19th century.
+1. Students will demonstrate knowledge about the ways the American people responded to social, economic, and political changes through electoral politics and social movements such as populism and temperance.
+ê The student will analyze the wide range of reform efforts known as Progressivism between 1890 and the First World War.
+1. Students will demonstrate knowledge of how Progressives addressed problems of industrial capitalism, urbanization, and political corruption.  
+2. Students will analyze the debates about woman suffrage and demonstrate knowledge of the successful campaign that led to the adoption of the 19th Amendment granting women the right to vote.
+ 
+ 
+ 
+12. Imperialism and World War I
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand how the United States changed from a regional power to an economic and political world power.
+? How did World War I change the United States from a regional power to an economic and political world power?
+ê The student will understand the causes and consequences of American expansionism and the Spanish-American War.
+1. Students will examine the causes of the Spanish-American war and analyze its effects on foreign policy, national identity, and the debate over the new role of America as a growing power in the Pacific and Latin America.
+ê The student will understand the causes and consequences of World War I.
+1. Students will analyze the causes of World War I and identify key people, major events, and the war’s impact on American foreign and domestic policy.
+ 
+ 
+13. The Twenties and Thirties
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand the social, political, and economic forces of the 1920’s and how they led to the Great Depression and the rise of the New Deal.
+? How did the various social forces of the 1920’s and 1930’s lead to the end of unregulated capitalism and greater national government involvement in economic and social life?
+ê The student will understand how the United States changed politically, culturally, and economically from the end of World War I to the eve of the Great Depression. 
+1. Students will analyze how developments in industrialization, transportation, communication, and urban mass culture changed American life. 
+2. Students will describe key social changes related to immigration, social policy, and race relations. 
+3. Students will examine the changing role of art, literature and music in the 1920s and 30s.
+ê The student will understand the origins and impact of Great Depression and the New Deal, 1929-1940.
+1. Students will demonstrate knowledge of the causes of the Great Depression and how it affected Americans in all walks of life. 
+2. Students will demonstrate knowledge of how the New Deal addressed the Great Depression and transformed American federalism.
+ 
+Ms Sangwan: U.S. History Quarter IV syllabus
+Quarter Four Essential Question:
+·        How have postwar social, political, and economic forces changed the United States internally and in its relationships with the rest of the world?
+Units:
+14. World War II
+15. The Cold War Era
+16. The Rights Revolution
+17. Vietnam and its Aftermath
+18. Contemporary America
+14. World War II
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand the causes and consequences of World War II.
+? How does World War II propel the United States to center stage on the world scene and lead to the division of Europe and the Cold War?
+ 
+? How did World War II lead to changes in American social structure and American economic life?
+ê The student will understand the origins of World War II, the course of the war, and the impact of the war on American society.
+1. Students will demonstrate knowledge of the international background of World War II and the debates over American involvement in the conflict.    
+2. Students will demonstrate knowledge of key leaders and events of World War II and how the Allies prevailed.
+3. Students will describe the impact of the war on people such as women, African Americans and Japanese Americans.
+ 
+15. The Cold War Era
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? The student will understand the transformation of the United States after World War II and the impact of the Cold War on both international and domestic affairs.
+? How did the cold war impact U.S. international affairs and life at home?
+ê The student will understand the social and economic changes in the United States, 1945-1960
+1. Students will demonstrate knowledge of social transformation in post-war United States.
+2. Students will understand the post-war economic boom and its impact on demographic patterns, role of labor, and multinational corporations.
+ê The student will understand the Cold War, its causes, consequences and its military conflicts.
+1. Students will demonstrate knowledge of key events of the Cold War and the causes and consequences of the Korean War.  
+ 
+16. The Rights Revolution
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand the causes and consequences of the “rights revolution” including the civil rights movement, youth movements, Native American rights movements, women’s rights movements, expansion of civil liberties, and the movements to protect for the environment and consumer rights.
+? How were the forces at work that allowed these social movements to arise in the postwar period?
+ê The student will understand the key domestic political issues and debates in the postwar era to 1972.
+1. Students will demonstrate knowledge of the domestic policies and civil rights issues of the Truman and Eisenhower administrations.  
+2. Students will analyze provisions of Kennedy’s New Frontier and Johnson’s Great Society.
+ 
+ê The student will understand the changes in legal definitions of individual rights in the 1960s and 1970s and the social movements that prompted them.
+1. Students will demonstrate knowledge of the “rights revolution” including the civil rights movement, women’s rights movements, expansion of civil liberties, and environmental and consumer protection.
+ 
+17. Vietnam and its Aftermath
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand the causes, the nature of the involvement and consequences of the Vietnam War.
+? How did the United States get involved in the war and how did American involvement in the war result in social changes at home and in international affairs?
+ê The student will understand the Cold War, its causes, consequences and its military conflicts.
+2. Students will analyze America’s involvement in the Vietnam War.  
+ê The student will understand the key domestic political issues and debates in the postwar era to 1972.
+3. Students will analyze the impact of the foreign and domestic policies of Nixon.  
+ 
+18. Contemporary America
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? Students will understand the evolution of foreign and domestic policy in the last three decades of the 20th century and the beginning of the 21st century.
+? How does the rising global economy lead to new forms of domestic and international conflict?
+ê The student will understand the evolution of foreign and domestic policy in the last three decades of the 20th century and the beginning of the 21st century.
+1. Students will demonstrate knowledge of the changing domestic and foreign policies in the Ford, Carter, Reagan, George H. W. Bush, and Clinton, George W. Bush administrations. 
+2 Students will demonstrate knowledge of economic, social, and cultural developments in contemporary United States.
+3. Students will know and describe the political and economic policies that contributed to the collapse of the Soviet Union and the end of the Cold War.
+ 
+High School United States History – Floating Unit in all quarters
+ 
+Floating Unit: Historical Inquiry
+ 
+ 
+ 
+Enduring Understanding(s)
+Essential Question(s)
+State Standard(s)
+State Recommended Assessment Benchmarks
+? The student will understand how to apply research skills through an in-depth investigation of a historical topic.
+? The student will understand how to analyze historical evidence and draw conclusions.
+ 
+ 
+ 
+Other Research Projects
+? The essential question will vary with the type of project assigned.
+ 
+ê The student will apply research skills through an in-depth investigation of a historical topic.
+ 
+1. Students will define a research topic that can be studied using a variety of historical sources with an emphasis on the use of primary sources.  
+2. Students will identify and use repositories of research materials including libraries, the Internet, historical societies, historic sites, and archives, as appropriate for their project.  
+3. Students will evaluate web sites for authenticity, reliability, and bias.  
+4. Students will learn how to prepare for, conduct, and document an oral history.  
+5. Students will apply strategies to find, collect and organize historical research.
+ê The student will analyze historical evidence and draw conclusions.
+ 
+1. Students will understand the use of secondary sources to provide background and insights on historical events, and that secondary sources might reflect an author’s bias.  
+2. Students will identify the principal formats of published secondary source material and evaluate such sources for both credibility and bias.    
+3. Students will compare and contrast primary sources to analyze first-hand accounts of historical events and evaluate such sources for both credibility and bias.  
+4. Students will review primary and secondary sources and compare and contrast their perspectives to shape their presentation of information relevant to their research topic.  
+5. Students will understand the historical context of their research topic and how it was influenced by, or influenced, other historical events.  
+6. Students will evaluate alternative interpretations of their research topic and defend or change their analysis by citing evidence from primary /secondary sources.
