@@ -4,6 +4,7 @@ author: "Sam and Ben"
 date: "August 23, 2017"
 output: html_document
 ---
+## Load libraries
 ```{r}
 
 
@@ -20,8 +21,9 @@ library(tidytext)
 
 ```
 
-
+## Load and pre-process corpus
 ```{r}
+#It looks like there is more than one syllubus in this document, that means there is no variation to find between documents. When I run the code below it looks like there are no topics, this could be the reason. I would try to separate the syllabi into individual text documents and then load the whole folder.
 docs<-Corpus(VectorSource("syllabi.txt"))
 
 toSpace <- content_transformer(function (x , pattern ) gsub(pattern, " ", x))
@@ -45,7 +47,7 @@ docs <- tm_map(docs, stripWhitespace)
 ```
 
 
-
+## Create TDM
 ```{r}
 dtm <- TermDocumentMatrix(docs)
 m <- as.matrix(dtm)
@@ -55,8 +57,7 @@ d <- data.frame(word = names(v),freq=v)
 
 ```
 
-
-
+# Run LDA to define topics
 ```{r}
 ap_lda <- LDA(m, k = 2, control = list(seed = 123))
 
@@ -64,7 +65,6 @@ terms(ap_lda)
 topics(ap_lda)
 
 ```
-
 
 
 ```{r}
@@ -86,5 +86,11 @@ ap_top_terms %>%
   facet_wrap(~ topic, scales = "free") +
   coord_flip()                    
 
+```
+
+#Predict topics for new syllabus
+```{r}
+topics <- posterior(ap_lda,new.syl)
+(syl.topics <- apply(topics$topics, 1, which.max))
 ```
 
