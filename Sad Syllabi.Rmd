@@ -4,10 +4,9 @@ author: "Sam and Ben"
 date: "August 23, 2017"
 output: html_document
 ---
-## Load libraries
+
 ```{r}
-
-
+## Load relevant packages 
 library(NLP)
 library(SnowballC)
 library(tm)
@@ -18,13 +17,32 @@ library(dplyr)
 library(tidyr)
 library(topicmodels)
 library(tidytext)
+library(foreign)
 
 ```
 
-## Load and pre-process corpus
+
 ```{r}
-#It looks like there is more than one syllubus in this document, that means there is no variation to find between documents. When I run the code below it looks like there are no topics, this could be the reason. I would try to separate the syllabi into individual text documents and then load the whole folder.
-docs<-Corpus(VectorSource("syllabi.txt"))
+
+## Extract documents so that they can be collectively analyzed within the Corpus. 
+
+setwd("C:/Users/Meow/Documents/SyllabiYeah/finalproject/Silly")
+
+files <-list.files()
+data <- 0
+for (f in files) 
+  
+  {
+  tempData = scan( f, what="character")
+  data <- c(data,tempData)    
+  }  
+
+```
+
+```{r}
+##Create and Clean Corpus. Eliminate all irrelevant data from documents (unrelated information to potential topics)
+
+docs<-Corpus(VectorSource(c(data)))
 
 toSpace <- content_transformer(function (x , pattern ) gsub(pattern, " ", x))
 docs <- tm_map(docs, toSpace, "/")
@@ -32,14 +50,13 @@ docs <- tm_map(docs, toSpace, "\\|")
 docs <- tm_map(docs, content_transformer(tolower))
 
 docs <- tm_map(docs, removeNumbers)
-
 docs <- tm_map(docs, removeWords, stopwords("english"))
 docs <- tm_map(docs, removeWords, c("student", "students", "will","grade","course","final","instructor","fall","summer","spring","incomplete","project","email"))
 docs <- tm_map(docs, removeWords, c("the","a","how","when", "where", "it", "an", "whose", "and","are", "at", "as", "be", "by", "for", "from", "has"))
 docs <- tm_map(docs, removeWords, c("in", "is", "its", "of", "on", "that", "was", "were", "will", "with", "whom", "but", "or","to","grades","courses","semester"))
 docs <- tm_map(docs, removeWords, c("about", "am" ,"any", "aren't", "at","because", "both", "can't", "couldn't", "did", "didn't", "do", "does","doesn't","doing"))
-docs <- tm_map(docs, removeWords, c("don't, 'have", "had","haven't", "haveing", "how","isn't","its", "of","or","such", "than", "that", "that's"))
-
+docs <- tm_map(docs, removeWords, c("don't, 'have", "had","haven't", "haveing", "how","isn't","its", "of","or","such", "than", "that", "that's","week", "class","office", "assignment", "must", "college", "assignment", "can","exam", "midterm", "teaching"))
+ 
 
 docs <- tm_map(docs, removePunctuation)
 docs <- tm_map(docs, stripWhitespace)
@@ -47,30 +64,45 @@ docs <- tm_map(docs, stripWhitespace)
 ```
 
 
-## Create TDM
 ```{r}
-dtm <- TermDocumentMatrix(docs)
+
+##Create and Prepare  Document Term Matrix for the algorithm  (not  Term Document Matrix silly!) 
+
+dtm <- DocumentTermMatrix(docs)
 m <- as.matrix(dtm)
+
+
+
+rowTotals <- apply(dtm , 1, sum) #Find the sum of words in each Document
+dtm.new   <- dtm[rowTotals> 0, ] 
+m <- as.matrix(dtm.new)
 
 v <- sort(rowSums(m),decreasing=TRUE)
 d <- data.frame(word = names(v),freq=v)
 
+
 ```
 
-# Run LDA to define topics
-```{r}
-ap_lda <- LDA(m, k = 2, control = list(seed = 123))
 
+```{r}
+
+##Select number of topics (K)
+##Apply Latent Dirichlet Allocation.
+##Convert term frequencies into probability distributions.
+##These distributions each represent various topics contained in the documents within the Corpus. 
+
+ap_lda <- LDA(m, k = 30, control = list(seed = 123))
 terms(ap_lda)
 topics(ap_lda)
 
+
 ```
 
 
 ```{r}
+##Visualization and Frequency Fun!
 
 ap_topics <- tidy(ap_lda, matrix = "beta")
-
 
 
 ap_top_terms <- ap_topics %>%
@@ -80,17 +112,13 @@ ap_top_terms <- ap_topics %>%
   arrange(topic, -beta)
 
 ap_top_terms %>%
-  mutate(term = reorder(term, beta))
+  mutate(term = reorder(term, beta)) %>%
   ggplot(aes(term, beta, fill = factor(topic))) +
-  #geom_col(show.legend = FALSE) +
+  geom_col(show.legend = FALSE) +
   facet_wrap(~ topic, scales = "free") +
-  coord_flip()                    
+  coord_flip()                 
 
-```
+findFreqTerms(dtm, 5)
 
-#Predict topics for new syllabus
-```{r}
-topics <- posterior(ap_lda,new.syl)
-(syl.topics <- apply(topics$topics, 1, which.max))
 ```
 
