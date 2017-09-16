@@ -88,9 +88,23 @@ ap_top_terms %>%
 
 ```
 
-#Predict topics for new syllabus
+# Predict topics for new syllabus
 ```{r}
 topics <- posterior(ap_lda,new.syl)
 (syl.topics <- apply(topics$topics, 1, which.max))
+```
+
+# Choose one word to represent each topic
+```{r}
+
+```
+
+#Generate matrix of topic words and 
+
+# Use neural net to match to learning goal or objective
+```{r}
+library(neuralnet)
+
+net <- neuralnet(verbs ~ topics, DF, hidden = 1, threshold = 0.01)
 ```
 
